@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Case</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #eef2f7;
+    }
+
+    .header {
+        background-color: #1b263b;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .container-box {
+        width: 45%;
+        margin: 40px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #1b263b;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h5>Collectorate Litigation System - Puri</h5>
+    <div>
+        {{ session.get('user') }} | 
+        <a href="/logout" class="text-white">Logout</a>
+    </div>
+</div>
+
+<div class="container-box">
+    <h2>Add Case</h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Case Number</label>
+            <input name="case_no" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Year</label>
+            <input name="year" type="number" min="1900" max="2100" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Case Type</label>
+            <select name="case_type" class="form-control" required>
+                <option value="">--Select--</option>
+                <option>SLP</option>
+                <option>WPC</option>
+                <option>PIL</option>
+                <option>CONTC</option>
+                <option>WA</option>
+                <option>IA</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Court</label>
+            <select name="court" class="form-control" required>
+                <option value="">--Select--</option>
+                <option>Supreme Court</option>
+                <option>High Court</option>
+                <option>NGT Kolkata</option>
+                <option>NHRC</option>
+                <option>OHRC</option>
+                <option>Lokayukta</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Petitioner Name</label>
+            <input name="petitioner" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Office</label>
+            <select name="office" class="form-control" required>
+                <option value="">--Select--</option>
+                <option>Tahasil Puri</option>
+                <option>Tahasil Kanas</option>
+                <option>BDO Puri Sadar</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Next Hearing Date</label>
+            <input type="date" name="next_hearing" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Save Case</button>
+
+        <a href="/dashboard" class="btn btn-secondary w-100 mt-2">⬅ Back to Dashboard</a>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Litigation Management Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        /* HEADER */
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            position: fixed;
+            background-color: #002244;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .sidebar a:hover {
+            background-color: #0055a5;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        /* CARDS */
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #003366;
+        }
+
+        /* BUTTON */
+        button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #0055a5;
+        }
+
+        /* INPUT */
+        input, select {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background: #ddd;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    📊 Litigation Management System – Collectorate Dashboard
+</div>
+
+<div class="sidebar">
+    <a href="/dashboard">🏠 Dashboard</a>
+    <a href="/upload">📤 Upload Cases</a>
+    <a href="/cases">📁 View Cases</a>
+    <a href="/download_excel">📥 Reports</a>
+    <a href="/logout">🚪 Logout</a>
+</div>
+
+<div class="main">
+
+    <div class="grid">
+
+        <!-- UPLOAD CARD -->
+        <div class="card">
+            <h3>📤 Upload Excel</h3>
+
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <button type="submit">Upload Excel</button>
+            </form>
+
+            <p style="color:red; font-size:13px;">
+                ⚠️ Upload only in prescribed Excel format
+            </p>
+        </div>
+
+        <!-- DOWNLOAD CARD -->
+        <div class="card">
+            <h3>📥 Download Report</h3>
+
+            <form method="GET" action="/download_excel">
+
+                <label>Court</label>
+                <select name="court">
+                    <option value="">All Courts</option>
+                    <option>High Court</option>
+                    <option>Supreme Court</option>
+                </select>
+
+                <label>Case Type</label>
+                <select name="case_type">
+                    <option value="">All Types</option>
+                    <option>Civil</option>
+                    <option>Criminal</option>
+                </select>
+
+                <button type="submit">Download Excel</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- SUMMARY CARDS -->
+    <div class="grid">
+
+        <div class="card">
+            <h3>📁 Total Cases</h3>
+            <h2>{{ total_cases }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>⏳ Pending Cases</h3>
+            <h2>{{ pending_cases }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>⚖️ High Court</h3>
+            <h2>{{ high_court }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>🏛️ Supreme Court</h3>
+            <h2>{{ supreme_court }}</h2>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    NIC Odisha | Litigation Monitoring System
+</div>
+
+</body>
+</html>
